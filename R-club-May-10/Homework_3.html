@@ -203,7 +203,7 @@ nov_dec2&lt;-filter(flights, month %in% c(11,12))</code></pre>
 <ol style="list-style-type: lower-alpha">
 <li>Had an arrival delay of two or more hours</li>
 </ol>
-<pre class="r"><code>two_hour_delay1&lt;-filter(flights, !(arr_delay &gt;120 | dep_delay &gt; 120))
+<pre class="r"><code>two_hour_delay1&lt;-filter(flights, (arr_delay &gt;120 | dep_delay &gt; 120))
 two_hour_delay2&lt;-filter(flights, arr_delay &lt;= 120, dep_delay &lt;= 120)</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Flew to Houston (IAH or HOU)</li>
@@ -230,7 +230,8 @@ str(flights)</code></pre>
 ##  $ hour          : num  5 5 5 5 6 5 6 6 6 6 ...
 ##  $ minute        : num  15 29 40 45 0 58 0 0 0 0 ...
 ##  $ time_hour     : POSIXct, format: &quot;2013-01-01 05:00:00&quot; &quot;2013-01-01 05:00:00&quot; ...</code></pre>
-<pre class="r"><code>houston&lt;-filter(flights, dest %in% c(&quot;IAH&quot;, &quot;HOU&quot;))</code></pre>
+<pre class="r"><code>houston1&lt;-filter(flights, dest ==&quot;IAH&quot; | dest == &quot;HOU&quot;)
+houston2&lt;-filter(flights, dest %in% c(&quot;IAH&quot;, &quot;HOU&quot;))</code></pre>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Were operated by United, American, or Delta</li>
 </ol>
@@ -363,6 +364,47 @@ carriers2&lt;-filter(flights, carrier %in% c(&quot;AA&quot;, &quot;DL&quot;, &qu
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<pre class="r"><code>summary(flights)</code></pre>
+<pre><code>##       year          month             day           dep_time   
+##  Min.   :2013   Min.   : 1.000   Min.   : 1.00   Min.   :   1  
+##  1st Qu.:2013   1st Qu.: 4.000   1st Qu.: 8.00   1st Qu.: 907  
+##  Median :2013   Median : 7.000   Median :16.00   Median :1401  
+##  Mean   :2013   Mean   : 6.549   Mean   :15.71   Mean   :1349  
+##  3rd Qu.:2013   3rd Qu.:10.000   3rd Qu.:23.00   3rd Qu.:1744  
+##  Max.   :2013   Max.   :12.000   Max.   :31.00   Max.   :2400  
+##                                                  NA's   :8255  
+##  sched_dep_time   dep_delay          arr_time    sched_arr_time
+##  Min.   : 106   Min.   : -43.00   Min.   :   1   Min.   :   1  
+##  1st Qu.: 906   1st Qu.:  -5.00   1st Qu.:1104   1st Qu.:1124  
+##  Median :1359   Median :  -2.00   Median :1535   Median :1556  
+##  Mean   :1344   Mean   :  12.64   Mean   :1502   Mean   :1536  
+##  3rd Qu.:1729   3rd Qu.:  11.00   3rd Qu.:1940   3rd Qu.:1945  
+##  Max.   :2359   Max.   :1301.00   Max.   :2400   Max.   :2359  
+##                 NA's   :8255      NA's   :8713                 
+##    arr_delay          carrier              flight       tailnum         
+##  Min.   : -86.000   Length:336776      Min.   :   1   Length:336776     
+##  1st Qu.: -17.000   Class :character   1st Qu.: 553   Class :character  
+##  Median :  -5.000   Mode  :character   Median :1496   Mode  :character  
+##  Mean   :   6.895                      Mean   :1972                     
+##  3rd Qu.:  14.000                      3rd Qu.:3465                     
+##  Max.   :1272.000                      Max.   :8500                     
+##  NA's   :9430                                                           
+##     origin              dest              air_time        distance   
+##  Length:336776      Length:336776      Min.   : 20.0   Min.   :  17  
+##  Class :character   Class :character   1st Qu.: 82.0   1st Qu.: 502  
+##  Mode  :character   Mode  :character   Median :129.0   Median : 872  
+##                                        Mean   :150.7   Mean   :1040  
+##                                        3rd Qu.:192.0   3rd Qu.:1389  
+##                                        Max.   :695.0   Max.   :4983  
+##                                        NA's   :9430                  
+##       hour           minute        time_hour                  
+##  Min.   : 1.00   Min.   : 0.00   Min.   :2013-01-01 05:00:00  
+##  1st Qu.: 9.00   1st Qu.: 8.00   1st Qu.:2013-04-04 13:00:00  
+##  Median :13.00   Median :29.00   Median :2013-07-03 10:00:00  
+##  Mean   :13.18   Mean   :26.23   Mean   :2013-07-03 05:02:36  
+##  3rd Qu.:17.00   3rd Qu.:44.00   3rd Qu.:2013-10-01 07:00:00  
+##  Max.   :23.00   Max.   :59.00   Max.   :2013-12-31 23:00:00  
+## </code></pre>
 <pre class="r"><code>filter(flights, between(dep_time, 0, 600))</code></pre>
 <pre><code>## # A tibble: 9,344 × 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time
@@ -384,6 +426,47 @@ carriers2&lt;-filter(flights, carrier %in% c(&quot;AA&quot;, &quot;DL&quot;, &qu
 <ol start="3" style="list-style-type: decimal">
 <li>How many flights have a missing dep_time? What other variables are missing? What might these rows represent?</li>
 </ol>
+<pre class="r"><code>summary(flights)</code></pre>
+<pre><code>##       year          month             day           dep_time   
+##  Min.   :2013   Min.   : 1.000   Min.   : 1.00   Min.   :   1  
+##  1st Qu.:2013   1st Qu.: 4.000   1st Qu.: 8.00   1st Qu.: 907  
+##  Median :2013   Median : 7.000   Median :16.00   Median :1401  
+##  Mean   :2013   Mean   : 6.549   Mean   :15.71   Mean   :1349  
+##  3rd Qu.:2013   3rd Qu.:10.000   3rd Qu.:23.00   3rd Qu.:1744  
+##  Max.   :2013   Max.   :12.000   Max.   :31.00   Max.   :2400  
+##                                                  NA's   :8255  
+##  sched_dep_time   dep_delay          arr_time    sched_arr_time
+##  Min.   : 106   Min.   : -43.00   Min.   :   1   Min.   :   1  
+##  1st Qu.: 906   1st Qu.:  -5.00   1st Qu.:1104   1st Qu.:1124  
+##  Median :1359   Median :  -2.00   Median :1535   Median :1556  
+##  Mean   :1344   Mean   :  12.64   Mean   :1502   Mean   :1536  
+##  3rd Qu.:1729   3rd Qu.:  11.00   3rd Qu.:1940   3rd Qu.:1945  
+##  Max.   :2359   Max.   :1301.00   Max.   :2400   Max.   :2359  
+##                 NA's   :8255      NA's   :8713                 
+##    arr_delay          carrier              flight       tailnum         
+##  Min.   : -86.000   Length:336776      Min.   :   1   Length:336776     
+##  1st Qu.: -17.000   Class :character   1st Qu.: 553   Class :character  
+##  Median :  -5.000   Mode  :character   Median :1496   Mode  :character  
+##  Mean   :   6.895                      Mean   :1972                     
+##  3rd Qu.:  14.000                      3rd Qu.:3465                     
+##  Max.   :1272.000                      Max.   :8500                     
+##  NA's   :9430                                                           
+##     origin              dest              air_time        distance   
+##  Length:336776      Length:336776      Min.   : 20.0   Min.   :  17  
+##  Class :character   Class :character   1st Qu.: 82.0   1st Qu.: 502  
+##  Mode  :character   Mode  :character   Median :129.0   Median : 872  
+##                                        Mean   :150.7   Mean   :1040  
+##                                        3rd Qu.:192.0   3rd Qu.:1389  
+##                                        Max.   :695.0   Max.   :4983  
+##                                        NA's   :9430                  
+##       hour           minute        time_hour                  
+##  Min.   : 1.00   Min.   : 0.00   Min.   :2013-01-01 05:00:00  
+##  1st Qu.: 9.00   1st Qu.: 8.00   1st Qu.:2013-04-04 13:00:00  
+##  Median :13.00   Median :29.00   Median :2013-07-03 10:00:00  
+##  Mean   :13.18   Mean   :26.23   Mean   :2013-07-03 05:02:36  
+##  3rd Qu.:17.00   3rd Qu.:44.00   3rd Qu.:2013-10-01 07:00:00  
+##  Max.   :23.00   Max.   :59.00   Max.   :2013-12-31 23:00:00  
+## </code></pre>
 <pre class="r"><code>filter(flights, is.na(dep_time))</code></pre>
 <pre><code>## # A tibble: 8,255 × 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time
@@ -830,8 +913,23 @@ mutate(flights, dep_time2=dep_time/100*60)</code></pre>
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, test &lt;int&gt;</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Compare dep_time, sched_dep_time, and dep_delay. How would you expect those three numbers to be related?</p></li>
-<li><p>Find the 10 most delayed flights using a ranking function. How do you want to handle ties? Carefully read the documentation for min_rank().</p></li>
+<li>Compare dep_time, sched_dep_time, and dep_delay. How would you expect those three numbers to be related?</li>
+</ol>
+<p>departure time-scheduled departure time= delay?</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Find the 10 most delayed flights using a ranking function. How do you want to handle ties? Carefully read the documentation for min_rank().</li>
+</ol>
+<pre class="r"><code>rank&lt;-mutate(flights, delay.rank = min(desc(dep_delay)))
+rank2&lt;-arrange(rank, delay.rank)
+filter(rank2, delay.rank&lt;=10)</code></pre>
+<pre><code>## # A tibble: 0 × 20
+## # ... with 20 variables: year &lt;int&gt;, month &lt;int&gt;, day &lt;int&gt;,
+## #   dep_time &lt;int&gt;, sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,
+## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
+## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;,
+## #   delay.rank &lt;dbl&gt;</code></pre>
+<ol start="5" style="list-style-type: decimal">
 <li><p>What does 1:3 + 1:10 return? Why?</p></li>
 <li><p>What trigonometric functions does R provide?</p></li>
 </ol>
