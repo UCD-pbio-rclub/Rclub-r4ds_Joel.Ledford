@@ -1,9 +1,8 @@
-# Homework 3
+# Homework 4
 
 
 
-###Load the Libraries
-####nycflights13
+####Load the Libraries
 
 
 
@@ -36,71 +35,8 @@ flights
 ## #   minute <dbl>, time_hour <dttm>
 ```
 
-####Filter is by rows
-All flights on Jan 1.
+##5.2.4 Exercises
 
-```r
-filter(flights, month==1, day==1)
-```
-
-```
-## # A tibble: 842 × 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    <int> <int> <int>    <int>          <int>     <dbl>    <int>
-## 1   2013     1     1      517            515         2      830
-## 2   2013     1     1      533            529         4      850
-## 3   2013     1     1      542            540         2      923
-## 4   2013     1     1      544            545        -1     1004
-## 5   2013     1     1      554            600        -6      812
-## 6   2013     1     1      554            558        -4      740
-## 7   2013     1     1      555            600        -5      913
-## 8   2013     1     1      557            600        -3      709
-## 9   2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # ... with 832 more rows, and 12 more variables: sched_arr_time <int>,
-## #   arr_delay <dbl>, carrier <chr>, flight <int>, tailnum <chr>,
-## #   origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>,
-## #   minute <dbl>, time_hour <dttm>
-```
-
-```r
-jan1<-filter(flights, month==1, day==1)
-```
-
-All flights on Dec 25, to a variable dec25.
-
-```r
-(dec25<-filter(flights, month==12, day==25))
-```
-
-```
-## # A tibble: 719 × 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    <int> <int> <int>    <int>          <int>     <dbl>    <int>
-## 1   2013    12    25      456            500        -4      649
-## 2   2013    12    25      524            515         9      805
-## 3   2013    12    25      542            540         2      832
-## 4   2013    12    25      546            550        -4     1022
-## 5   2013    12    25      556            600        -4      730
-## 6   2013    12    25      557            600        -3      743
-## 7   2013    12    25      557            600        -3      818
-## 8   2013    12    25      559            600        -1      855
-## 9   2013    12    25      559            600        -1      849
-## 10  2013    12    25      600            600         0      850
-## # ... with 709 more rows, and 12 more variables: sched_arr_time <int>,
-## #   arr_delay <dbl>, carrier <chr>, flight <int>, tailnum <chr>,
-## #   origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>,
-## #   minute <dbl>, time_hour <dttm>
-```
-
-####Logical operators
-
-```r
-nov_dec1<-filter(flights, month==11 | month==12)
-nov_dec2<-filter(flights, month %in% c(11,12))
-```
-
-###Exercises
 1. Find all flights that:
 
 a. Had an arrival delay of two or more hours
@@ -469,57 +405,7 @@ I think these are canceled flights.
 
 Need help on this one.
 
-####Arrange rows with arrange()
-
-```r
-arrange(flights, year, month, day)
-```
-
-```
-## # A tibble: 336,776 × 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    <int> <int> <int>    <int>          <int>     <dbl>    <int>
-## 1   2013     1     1      517            515         2      830
-## 2   2013     1     1      533            529         4      850
-## 3   2013     1     1      542            540         2      923
-## 4   2013     1     1      544            545        -1     1004
-## 5   2013     1     1      554            600        -6      812
-## 6   2013     1     1      554            558        -4      740
-## 7   2013     1     1      555            600        -5      913
-## 8   2013     1     1      557            600        -3      709
-## 9   2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # ... with 336,766 more rows, and 12 more variables: sched_arr_time <int>,
-## #   arr_delay <dbl>, carrier <chr>, flight <int>, tailnum <chr>,
-## #   origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>,
-## #   minute <dbl>, time_hour <dttm>
-```
-
-```r
-arrange(flights, desc(arr_delay))
-```
-
-```
-## # A tibble: 336,776 × 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    <int> <int> <int>    <int>          <int>     <dbl>    <int>
-## 1   2013     1     9      641            900      1301     1242
-## 2   2013     6    15     1432           1935      1137     1607
-## 3   2013     1    10     1121           1635      1126     1239
-## 4   2013     9    20     1139           1845      1014     1457
-## 5   2013     7    22      845           1600      1005     1044
-## 6   2013     4    10     1100           1900       960     1342
-## 7   2013     3    17     2321            810       911      135
-## 8   2013     7    22     2257            759       898      121
-## 9   2013    12     5      756           1700       896     1058
-## 10  2013     5     3     1133           2055       878     1250
-## # ... with 336,766 more rows, and 12 more variables: sched_arr_time <int>,
-## #   arr_delay <dbl>, carrier <chr>, flight <int>, tailnum <chr>,
-## #   origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>,
-## #   minute <dbl>, time_hour <dttm>
-```
-
-####Exercises
+##5.3.1 Exercises
 
 1. How could you use arrange() to sort all missing values to the start? (Hint: use is.na()).
 
@@ -673,125 +559,7 @@ arrange(flights, distance)
 ## #   minute <dbl>, time_hour <dttm>
 ```
 
-####Select is for columns
-
-```r
-select(flights, year, month, day)
-```
-
-```
-## # A tibble: 336,776 × 3
-##     year month   day
-##    <int> <int> <int>
-## 1   2013     1     1
-## 2   2013     1     1
-## 3   2013     1     1
-## 4   2013     1     1
-## 5   2013     1     1
-## 6   2013     1     1
-## 7   2013     1     1
-## 8   2013     1     1
-## 9   2013     1     1
-## 10  2013     1     1
-## # ... with 336,766 more rows
-```
-
-
-```r
-select(flights, year:day)
-```
-
-```
-## # A tibble: 336,776 × 3
-##     year month   day
-##    <int> <int> <int>
-## 1   2013     1     1
-## 2   2013     1     1
-## 3   2013     1     1
-## 4   2013     1     1
-## 5   2013     1     1
-## 6   2013     1     1
-## 7   2013     1     1
-## 8   2013     1     1
-## 9   2013     1     1
-## 10  2013     1     1
-## # ... with 336,766 more rows
-```
-
-
-```r
-select(flights, -(year:day))
-```
-
-```
-## # A tibble: 336,776 × 16
-##    dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay
-##       <int>          <int>     <dbl>    <int>          <int>     <dbl>
-## 1       517            515         2      830            819        11
-## 2       533            529         4      850            830        20
-## 3       542            540         2      923            850        33
-## 4       544            545        -1     1004           1022       -18
-## 5       554            600        -6      812            837       -25
-## 6       554            558        -4      740            728        12
-## 7       555            600        -5      913            854        19
-## 8       557            600        -3      709            723       -14
-## 9       557            600        -3      838            846        -8
-## 10      558            600        -2      753            745         8
-## # ... with 336,766 more rows, and 10 more variables: carrier <chr>,
-## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>,
-## #   distance <dbl>, hour <dbl>, minute <dbl>, time_hour <dttm>
-```
-
-
-```r
-rename(flights, tail_num= tailnum)
-```
-
-```
-## # A tibble: 336,776 × 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    <int> <int> <int>    <int>          <int>     <dbl>    <int>
-## 1   2013     1     1      517            515         2      830
-## 2   2013     1     1      533            529         4      850
-## 3   2013     1     1      542            540         2      923
-## 4   2013     1     1      544            545        -1     1004
-## 5   2013     1     1      554            600        -6      812
-## 6   2013     1     1      554            558        -4      740
-## 7   2013     1     1      555            600        -5      913
-## 8   2013     1     1      557            600        -3      709
-## 9   2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # ... with 336,766 more rows, and 12 more variables: sched_arr_time <int>,
-## #   arr_delay <dbl>, carrier <chr>, flight <int>, tail_num <chr>,
-## #   origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>,
-## #   minute <dbl>, time_hour <dttm>
-```
-
-```r
-select(flights, time_hour, air_time, everything())
-```
-
-```
-## # A tibble: 336,776 × 19
-##              time_hour air_time  year month   day dep_time sched_dep_time
-##                 <dttm>    <dbl> <int> <int> <int>    <int>          <int>
-## 1  2013-01-01 05:00:00      227  2013     1     1      517            515
-## 2  2013-01-01 05:00:00      227  2013     1     1      533            529
-## 3  2013-01-01 05:00:00      160  2013     1     1      542            540
-## 4  2013-01-01 05:00:00      183  2013     1     1      544            545
-## 5  2013-01-01 06:00:00      116  2013     1     1      554            600
-## 6  2013-01-01 05:00:00      150  2013     1     1      554            558
-## 7  2013-01-01 06:00:00      158  2013     1     1      555            600
-## 8  2013-01-01 06:00:00       53  2013     1     1      557            600
-## 9  2013-01-01 06:00:00      140  2013     1     1      557            600
-## 10 2013-01-01 06:00:00      138  2013     1     1      558            600
-## # ... with 336,766 more rows, and 12 more variables: dep_delay <dbl>,
-## #   arr_time <int>, sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
-## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>, distance <dbl>,
-## #   hour <dbl>, minute <dbl>
-```
-
-####Exercises
+##5.4.1 Exercises
 
 1. Brainstorm as many ways as possible to select dep_time, dep_delay, arr_time, and arr_delay from flights.
 
@@ -932,32 +700,7 @@ select(flights, contains("TIME"))
 ## # ... with 336,766 more rows, and 1 more variables: time_hour <dttm>
 ```
 
-####Add new variables with mutate
-
-
-```r
-flights_sm<-select(flights, year:day, ends_with("delay"), distance, air_time)
-mutate(flights_sm, gain=arr_delay - dep_delay, speed = distance/ air_time*60)
-```
-
-```
-## # A tibble: 336,776 × 9
-##     year month   day dep_delay arr_delay distance air_time  gain    speed
-##    <int> <int> <int>     <dbl>     <dbl>    <dbl>    <dbl> <dbl>    <dbl>
-## 1   2013     1     1         2        11     1400      227     9 370.0441
-## 2   2013     1     1         4        20     1416      227    16 374.2731
-## 3   2013     1     1         2        33     1089      160    31 408.3750
-## 4   2013     1     1        -1       -18     1576      183   -17 516.7213
-## 5   2013     1     1        -6       -25      762      116   -19 394.1379
-## 6   2013     1     1        -4        12      719      150    16 287.6000
-## 7   2013     1     1        -5        19     1065      158    24 404.4304
-## 8   2013     1     1        -3       -14      229       53   -11 259.2453
-## 9   2013     1     1        -3        -8      944      140    -5 404.5714
-## 10  2013     1     1        -2         8      733      138    10 318.6957
-## # ... with 336,766 more rows
-```
-
-####Exercises
+##5.5.2 Exercises
 
 1. Currently dep_time and sched_dep_time are convenient to look at, but hard to compute with because they’re not really continuous numbers. Convert them to a more convenient representation of number of minutes since midnight.
 
@@ -1084,743 +827,21 @@ There is a different number of columns.
 6. What trigonometric functions does R provide?
 sin, cos, tan , etc.
 
-####Grouped summaries with summarise()
-
-
-```r
-summarise(flights, delay = mean(dep_delay, na.rm = TRUE))
-```
-
-```
-## # A tibble: 1 × 1
-##      delay
-##      <dbl>
-## 1 12.63907
-```
-
-summarise() is not terribly useful unless we pair it with group_by(). This changes the unit of analysis from the complete dataset to individual groups. Then, when you use the dplyr verbs on a grouped data frame they’ll be automatically applied “by group”. For example, if we applied exactly the same code to a data frame grouped by date, we get the average delay per date:
-
-
-```r
-by_day <- group_by(flights, year, month, day)
-summarise(by_day, delay = mean(dep_delay, na.rm = TRUE))
-```
-
-```
-## Source: local data frame [365 x 4]
-## Groups: year, month [?]
-## 
-##     year month   day     delay
-##    <int> <int> <int>     <dbl>
-## 1   2013     1     1 11.548926
-## 2   2013     1     2 13.858824
-## 3   2013     1     3 10.987832
-## 4   2013     1     4  8.951595
-## 5   2013     1     5  5.732218
-## 6   2013     1     6  7.148014
-## 7   2013     1     7  5.417204
-## 8   2013     1     8  2.553073
-## 9   2013     1     9  2.276477
-## 10  2013     1    10  2.844995
-## # ... with 355 more rows
-```
-
-####5.6.1 Combining multiple operations with the pipe
-Imagine that we want to explore the relationship between the distance and average delay for each location. Using what you know about dplyr, you might write code like this:
-
-
-```r
-by_dest <- group_by(flights, dest)
-delay <- summarise(by_dest,
-  count = n(),
-  dist = mean(distance, na.rm = TRUE),
-  delay = mean(arr_delay, na.rm = TRUE)
-)
-delay <- filter(delay, count > 20, dest != "HNL")
-
-ggplot(data = delay, mapping = aes(x = dist, y = delay)) +
-  geom_point(aes(size = count), alpha = 1/3) +
-  geom_smooth(se = FALSE)
-```
-
-```
-## `geom_smooth()` using method = 'loess'
-```
-
-![](Homework_4_files/figure-html/unnamed-chunk-35-1.png)<!-- -->
-
-There’s another way to tackle the same problem with the pipe, %>%:
-
-...As suggested by this reading, a good way to pronounce %>% when reading code is “then”.
-
-```r
-delays <- flights %>% 
-  group_by(dest) %>% 
-  summarise(
-    count = n(),
-    dist = mean(distance, na.rm = TRUE),
-    delay = mean(arr_delay, na.rm = TRUE)
-  ) %>% 
-  filter(count > 20, dest != "HNL")
-```
-
-####5.6.2 Missing values
-You may have wondered about the na.rm argument we used above. What happens if we don’t set it?
-
-
-```r
-flights %>% 
-  group_by(year, month, day) %>% 
-  summarise(mean = mean(dep_delay))
-```
-
-```
-## Source: local data frame [365 x 4]
-## Groups: year, month [?]
-## 
-##     year month   day  mean
-##    <int> <int> <int> <dbl>
-## 1   2013     1     1    NA
-## 2   2013     1     2    NA
-## 3   2013     1     3    NA
-## 4   2013     1     4    NA
-## 5   2013     1     5    NA
-## 6   2013     1     6    NA
-## 7   2013     1     7    NA
-## 8   2013     1     8    NA
-## 9   2013     1     9    NA
-## 10  2013     1    10    NA
-## # ... with 355 more rows
-```
-
-We get a lot of missing values! That’s because aggregation functions obey the usual rule of missing values: if there’s any missing value in the input, the output will be a missing value. Fortunately, all aggregation functions have an na.rm argument which removes the missing values prior to computation:
-
-
-```r
-flights %>% 
-  group_by(year, month, day) %>% 
-  summarise(mean = mean(dep_delay, na.rm = TRUE))
-```
-
-```
-## Source: local data frame [365 x 4]
-## Groups: year, month [?]
-## 
-##     year month   day      mean
-##    <int> <int> <int>     <dbl>
-## 1   2013     1     1 11.548926
-## 2   2013     1     2 13.858824
-## 3   2013     1     3 10.987832
-## 4   2013     1     4  8.951595
-## 5   2013     1     5  5.732218
-## 6   2013     1     6  7.148014
-## 7   2013     1     7  5.417204
-## 8   2013     1     8  2.553073
-## 9   2013     1     9  2.276477
-## 10  2013     1    10  2.844995
-## # ... with 355 more rows
-```
-
-In this case, where missing values represent cancelled flights, we could also tackle the problem by first removing the cancelled flights. We’ll save this dataset so we can reuse in the next few examples.
-
-
-```r
-not_cancelled <- flights %>% 
-  filter(!is.na(dep_delay), !is.na(arr_delay))
-```
-
-
-```r
-not_cancelled %>% 
-  group_by(year, month, day) %>% 
-  summarise(mean = mean(dep_delay))
-```
-
-```
-## Source: local data frame [365 x 4]
-## Groups: year, month [?]
-## 
-##     year month   day      mean
-##    <int> <int> <int>     <dbl>
-## 1   2013     1     1 11.435620
-## 2   2013     1     2 13.677802
-## 3   2013     1     3 10.907778
-## 4   2013     1     4  8.965859
-## 5   2013     1     5  5.732218
-## 6   2013     1     6  7.145959
-## 7   2013     1     7  5.417204
-## 8   2013     1     8  2.558296
-## 9   2013     1     9  2.301232
-## 10  2013     1    10  2.844995
-## # ... with 355 more rows
-```
-
-####5.6.3 Counts
-
-Whenever you do any aggregation, it’s always a good idea to include either a count (n()), or a count of non-missing values (sum(!is.na(x))). That way you can check that you’re not drawing conclusions based on very small amounts of data. For example, let’s look at the planes (identified by their tail number) that have the highest average delays:
-
-
-```r
-delays <- not_cancelled %>% 
-  group_by(tailnum) %>% 
-  summarise(
-    delay = mean(arr_delay)
-  )
-delays
-```
-
-```
-## # A tibble: 4,037 × 2
-##    tailnum      delay
-##      <chr>      <dbl>
-## 1   D942DN 31.5000000
-## 2   N0EGMQ  9.9829545
-## 3   N10156 12.7172414
-## 4   N102UW  2.9375000
-## 5   N103US -6.9347826
-## 6   N104UW  1.8043478
-## 7   N10575 20.6914498
-## 8   N105UW -0.2666667
-## 9   N107US -5.7317073
-## 10  N108UW -1.2500000
-## # ... with 4,027 more rows
-```
-
-```r
-ggplot(data = delays, mapping = aes(x = delay)) + 
-  geom_freqpoly(binwidth = 10)
-```
-
-![](Homework_4_files/figure-html/unnamed-chunk-41-1.png)<!-- -->
-
-Wow, there are some planes that have an average delay of 5 hours (300 minutes)!
-
-The story is actually a little more nuanced. We can get more insight if we draw a scatterplot of number of flights vs. average delay:
-
-
-```r
-delays <- not_cancelled %>% 
-  group_by(tailnum) %>% 
-  summarise(
-    delay = mean(arr_delay, na.rm = TRUE),
-    n = n()
-  )
-
-ggplot(data = delays, mapping = aes(x = n, y = delay)) + 
-  geom_point(alpha = 1/10)
-```
-
-![](Homework_4_files/figure-html/unnamed-chunk-42-1.png)<!-- -->
-
-Not surprisingly, there is much greater variation in the average delay when there are few flights. The shape of this plot is very characteristic: whenever you plot a mean (or other summary) vs. group size, you’ll see that the variation decreases as the sample size increases.
-
-When looking at this sort of plot, it’s often useful to filter out the groups with the smallest numbers of observations, so you can see more of the pattern and less of the extreme variation in the smallest groups. This is what the following code does, as well as showing you a handy pattern for integrating ggplot2 into dplyr flows. It’s a bit painful that you have to switch from %>% to +, but once you get the hang of it, it’s quite convenient.
-
-
-```r
-delays <- not_cancelled %>% 
-  group_by(tailnum) %>% 
-  summarise(
-    delay = mean(arr_delay, na.rm = TRUE),
-    n = n()
-  )
-
-delays
-```
-
-```
-## # A tibble: 4,037 × 3
-##    tailnum      delay     n
-##      <chr>      <dbl> <int>
-## 1   D942DN 31.5000000     4
-## 2   N0EGMQ  9.9829545   352
-## 3   N10156 12.7172414   145
-## 4   N102UW  2.9375000    48
-## 5   N103US -6.9347826    46
-## 6   N104UW  1.8043478    46
-## 7   N10575 20.6914498   269
-## 8   N105UW -0.2666667    45
-## 9   N107US -5.7317073    41
-## 10  N108UW -1.2500000    60
-## # ... with 4,027 more rows
-```
-
-```r
-delays %>% 
-  filter(n > 25) %>% 
-  ggplot(mapping = aes(x = n, y = delay)) + 
-    geom_point(alpha = 1/10)
-```
-
-![](Homework_4_files/figure-html/unnamed-chunk-43-1.png)<!-- -->
-
-There’s another common variation of this type of pattern. Let’s look at how the average performance of batters in baseball is related to the number of times they’re at bat. Here I use data from the Lahman package to compute the batting average (number of hits / number of attempts) of every major league baseball player.
-
-When I plot the skill of the batter (measured by the batting average, ba) against the number of opportunities to hit the ball (measured by at bat, ab), you see two patterns:
-
-As above, the variation in our aggregate decreases as we get more data points.
-
-There’s a positive correlation between skill (ba) and opportunities to hit the ball (ab). This is because teams control who gets to play, and obviously they’ll pick their best players.
-
-
-```r
-library(Lahman)
-
-batting <- as_tibble(Lahman::Batting)
-
-batters <- batting %>% 
-  group_by(playerID) %>% 
-  summarise(
-    ba = sum(H, na.rm = TRUE) / sum(AB, na.rm = TRUE),
-    ab = sum(AB, na.rm = TRUE)
-  )
-
-batters
-```
-
-```
-## # A tibble: 18,659 × 3
-##     playerID        ba    ab
-##        <chr>     <dbl> <int>
-## 1  aardsda01 0.0000000     4
-## 2  aaronha01 0.3049984 12364
-## 3  aaronto01 0.2288136   944
-## 4   aasedo01 0.0000000     5
-## 5   abadan01 0.0952381    21
-## 6   abadfe01 0.1250000     8
-## 7  abadijo01 0.2244898    49
-## 8  abbated01 0.2536137  3044
-## 9  abbeybe01 0.1688889   225
-## 10 abbeych01 0.2809823  1751
-## # ... with 18,649 more rows
-```
-
-```r
-batters %>% 
-  filter(ab > 100) %>% 
-  ggplot(mapping = aes(x = ab, y = ba)) +
-    geom_point() + 
-    geom_smooth(se = FALSE)
-```
-
-```
-## `geom_smooth()` using method = 'gam'
-```
-
-![](Homework_4_files/figure-html/unnamed-chunk-44-1.png)<!-- -->
-
-This also has important implications for ranking. If you naively sort on desc(ba), the people with the best batting averages are clearly lucky, not skilled:
-
-```r
-batters %>% 
-  arrange(desc(ba))
-```
-
-```
-## # A tibble: 18,659 × 3
-##     playerID    ba    ab
-##        <chr> <dbl> <int>
-## 1  abramge01     1     1
-## 2  banisje01     1     1
-## 3  bartocl01     1     1
-## 4   bassdo01     1     1
-## 5  birasst01     1     2
-## 6  bruneju01     1     1
-## 7  burnscb01     1     1
-## 8  cammaer01     1     1
-## 9   campsh01     1     1
-## 10 crockcl01     1     1
-## # ... with 18,649 more rows
-```
-
-####5.6.4 Useful summary functions
-
-Just using means, counts, and sum can get you a long way, but R provides many other useful summary functions:
-
-Measures of location: we’ve used mean(x), but median(x) is also useful. The mean is the sum divided by the length; the median is a value where 50% of x is above it, and 50% is below it.
-
-It’s sometimes useful to combine aggregation with logical subsetting. We haven’t talked about this sort of subsetting yet, but you’ll learn more about it in subsetting.
-
-
-```r
-not_cancelled %>% 
-  group_by(year, month, day) %>% 
-  summarise(
-    avg_delay1 = mean(arr_delay),
-    avg_delay2 = mean(arr_delay[arr_delay > 0]) # the average positive delay
-  )
-```
-
-```
-## Source: local data frame [365 x 5]
-## Groups: year, month [?]
-## 
-##     year month   day avg_delay1 avg_delay2
-##    <int> <int> <int>      <dbl>      <dbl>
-## 1   2013     1     1 12.6510229   32.48156
-## 2   2013     1     2 12.6928879   32.02991
-## 3   2013     1     3  5.7333333   27.66087
-## 4   2013     1     4 -1.9328194   28.30976
-## 5   2013     1     5 -1.5258020   22.55882
-## 6   2013     1     6  4.2364294   24.37270
-## 7   2013     1     7 -4.9473118   27.76132
-## 8   2013     1     8 -3.2275785   20.78909
-## 9   2013     1     9 -0.2642777   25.63415
-## 10  2013     1    10 -5.8988159   27.34545
-## # ... with 355 more rows
-```
-
-Measures of spread: sd(x), IQR(x), mad(x). The mean squared deviation, or standard deviation or sd for short, is the standard measure of spread. The interquartile range IQR() and median absolute deviation mad(x) are robust equivalents that may be more useful if you have outliers.
-
-
-```r
-# Why is distance to some destinations more variable than to others?
-not_cancelled %>% 
-  group_by(dest) %>% 
-  summarise(distance_sd = sd(distance)) %>% 
-  arrange(desc(distance_sd))
-```
-
-```
-## # A tibble: 104 × 2
-##     dest distance_sd
-##    <chr>       <dbl>
-## 1    EGE   10.542765
-## 2    SAN   10.350094
-## 3    SFO   10.216017
-## 4    HNL   10.004197
-## 5    SEA    9.977993
-## 6    LAS    9.907786
-## 7    PDX    9.873299
-## 8    PHX    9.862546
-## 9    LAX    9.657195
-## 10   IND    9.458066
-## # ... with 94 more rows
-```
-
-Measures of rank: min(x), quantile(x, 0.25), max(x). Quantiles are a generalisation of the median. For example, quantile(x, 0.25) will find a value of x that is greater than 25% of the values, and less than the remaining 75%.
-
-
-```r
-not_cancelled %>% 
-  group_by(year, month, day) %>% 
-  summarise(
-    first = min(dep_time),
-    last = max(dep_time)
-  )
-```
-
-```
-## Source: local data frame [365 x 5]
-## Groups: year, month [?]
-## 
-##     year month   day first  last
-##    <int> <int> <int> <int> <int>
-## 1   2013     1     1   517  2356
-## 2   2013     1     2    42  2354
-## 3   2013     1     3    32  2349
-## 4   2013     1     4    25  2358
-## 5   2013     1     5    14  2357
-## 6   2013     1     6    16  2355
-## 7   2013     1     7    49  2359
-## 8   2013     1     8   454  2351
-## 9   2013     1     9     2  2252
-## 10  2013     1    10     3  2320
-## # ... with 355 more rows
-```
-
-Measures of position: first(x), nth(x, 2), last(x). These work similarly to x[1], x[2], and x[length(x)] but let you set a default value if that position does not exist (i.e. you’re trying to get the 3rd element from a group that only has two elements). For example, we can find the first and last departure for each day:
-
-
-```r
-not_cancelled %>% 
-  group_by(year, month, day) %>% 
-  summarise(
-    first_dep = first(dep_time), 
-    last_dep = last(dep_time)
-  )
-```
-
-```
-## Source: local data frame [365 x 5]
-## Groups: year, month [?]
-## 
-##     year month   day first_dep last_dep
-##    <int> <int> <int>     <int>    <int>
-## 1   2013     1     1       517     2356
-## 2   2013     1     2        42     2354
-## 3   2013     1     3        32     2349
-## 4   2013     1     4        25     2358
-## 5   2013     1     5        14     2357
-## 6   2013     1     6        16     2355
-## 7   2013     1     7        49     2359
-## 8   2013     1     8       454     2351
-## 9   2013     1     9         2     2252
-## 10  2013     1    10         3     2320
-## # ... with 355 more rows
-```
-
-These functions are complementary to filtering on ranks. Filtering gives you all variables, with each observation in a separate row:
-
-
-```r
-not_cancelled %>% 
-  group_by(year, month, day) %>% 
-  mutate(r = min_rank(desc(dep_time))) %>% 
-  filter(r %in% range(r))
-```
-
-```
-## Source: local data frame [770 x 20]
-## Groups: year, month, day [365]
-## 
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    <int> <int> <int>    <int>          <int>     <dbl>    <int>
-## 1   2013     1     1      517            515         2      830
-## 2   2013     1     1     2356           2359        -3      425
-## 3   2013     1     2       42           2359        43      518
-## 4   2013     1     2     2354           2359        -5      413
-## 5   2013     1     3       32           2359        33      504
-## 6   2013     1     3     2349           2359       -10      434
-## 7   2013     1     4       25           2359        26      505
-## 8   2013     1     4     2358           2359        -1      429
-## 9   2013     1     4     2358           2359        -1      436
-## 10  2013     1     5       14           2359        15      503
-## # ... with 760 more rows, and 13 more variables: sched_arr_time <int>,
-## #   arr_delay <dbl>, carrier <chr>, flight <int>, tailnum <chr>,
-## #   origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>,
-## #   minute <dbl>, time_hour <dttm>, r <int>
-```
-
-Counts: You’ve seen n(), which takes no arguments, and returns the size of the current group. To count the number of non-missing values, use sum(!is.na(x)). To count the number of distinct (unique) values, use n_distinct(x).
-
-
-```r
-not_cancelled %>% 
-  group_by(dest) %>% 
-  summarise(carriers = n_distinct(carrier)) %>% 
-  arrange(desc(carriers))
-```
-
-```
-## # A tibble: 104 × 2
-##     dest carriers
-##    <chr>    <int>
-## 1    ATL        7
-## 2    BOS        7
-## 3    CLT        7
-## 4    ORD        7
-## 5    TPA        7
-## 6    AUS        6
-## 7    DCA        6
-## 8    DTW        6
-## 9    IAD        6
-## 10   MSP        6
-## # ... with 94 more rows
-```
-
-Counts are so useful that dplyr provides a simple helper if all you want is a count:
-
-
-```r
-not_cancelled %>% 
-  count(dest)
-```
-
-```
-## # A tibble: 104 × 2
-##     dest     n
-##    <chr> <int>
-## 1    ABQ   254
-## 2    ACK   264
-## 3    ALB   418
-## 4    ANC     8
-## 5    ATL 16837
-## 6    AUS  2411
-## 7    AVL   261
-## 8    BDL   412
-## 9    BGR   358
-## 10   BHM   269
-## # ... with 94 more rows
-```
-
-You can optionally provide a weight variable. For example, you could use this to “count” (sum) the total number of miles a plane flew:
-
-
-```r
-not_cancelled %>% 
-  count(tailnum, wt = distance)
-```
-
-```
-## # A tibble: 4,037 × 2
-##    tailnum      n
-##      <chr>  <dbl>
-## 1   D942DN   3418
-## 2   N0EGMQ 239143
-## 3   N10156 109664
-## 4   N102UW  25722
-## 5   N103US  24619
-## 6   N104UW  24616
-## 7   N10575 139903
-## 8   N105UW  23618
-## 9   N107US  21677
-## 10  N108UW  32070
-## # ... with 4,027 more rows
-```
-
-Counts and proportions of logical values: sum(x > 10), mean(y == 0). When used with numeric functions, TRUE is converted to 1 and FALSE to 0. This makes sum() and mean() very useful: sum(x) gives the number of TRUEs in x, and mean(x) gives the proportion.
-
-
-```r
-not_cancelled %>% 
-  group_by(year, month, day) %>% 
-  summarise(n_early = sum(dep_time < 500))
-```
-
-```
-## Source: local data frame [365 x 4]
-## Groups: year, month [?]
-## 
-##     year month   day n_early
-##    <int> <int> <int>   <int>
-## 1   2013     1     1       0
-## 2   2013     1     2       3
-## 3   2013     1     3       4
-## 4   2013     1     4       3
-## 5   2013     1     5       3
-## 6   2013     1     6       2
-## 7   2013     1     7       2
-## 8   2013     1     8       1
-## 9   2013     1     9       3
-## 10  2013     1    10       3
-## # ... with 355 more rows
-```
-
-```r
-# What proportion of flights are delayed by more than an hour?
-not_cancelled %>% 
-  group_by(year, month, day) %>% 
-  summarise(hour_perc = mean(arr_delay > 60))
-```
-
-```
-## Source: local data frame [365 x 4]
-## Groups: year, month [?]
-## 
-##     year month   day  hour_perc
-##    <int> <int> <int>      <dbl>
-## 1   2013     1     1 0.07220217
-## 2   2013     1     2 0.08512931
-## 3   2013     1     3 0.05666667
-## 4   2013     1     4 0.03964758
-## 5   2013     1     5 0.03486750
-## 6   2013     1     6 0.04704463
-## 7   2013     1     7 0.03333333
-## 8   2013     1     8 0.02130045
-## 9   2013     1     9 0.02015677
-## 10  2013     1    10 0.01829925
-## # ... with 355 more rows
-```
-
-####5.6.5 Grouping by multiple variables
-
-When you group by multiple variables, each summary peels off one level of the grouping. That makes it easy to progressively roll up a dataset:
-
-
-```r
-daily <- group_by(flights, year, month, day)
-(per_day   <- summarise(daily, flights = n()))
-```
-
-```
-## Source: local data frame [365 x 4]
-## Groups: year, month [?]
-## 
-##     year month   day flights
-##    <int> <int> <int>   <int>
-## 1   2013     1     1     842
-## 2   2013     1     2     943
-## 3   2013     1     3     914
-## 4   2013     1     4     915
-## 5   2013     1     5     720
-## 6   2013     1     6     832
-## 7   2013     1     7     933
-## 8   2013     1     8     899
-## 9   2013     1     9     902
-## 10  2013     1    10     932
-## # ... with 355 more rows
-```
-
-```r
-(per_month <- summarise(per_day, flights = sum(flights)))
-```
-
-```
-## Source: local data frame [12 x 3]
-## Groups: year [?]
-## 
-##     year month flights
-##    <int> <int>   <int>
-## 1   2013     1   27004
-## 2   2013     2   24951
-## 3   2013     3   28834
-## 4   2013     4   28330
-## 5   2013     5   28796
-## 6   2013     6   28243
-## 7   2013     7   29425
-## 8   2013     8   29327
-## 9   2013     9   27574
-## 10  2013    10   28889
-## 11  2013    11   27268
-## 12  2013    12   28135
-```
-
-```r
-(per_year  <- summarise(per_month, flights = sum(flights)))
-```
-
-```
-## # A tibble: 1 × 2
-##    year flights
-##   <int>   <int>
-## 1  2013  336776
-```
-
-Be careful when progressively rolling up summaries: it’s OK for sums and counts, but you need to think about weighting means and variances, and it’s not possible to do it exactly for rank-based statistics like the median. In other words, the sum of groupwise sums is the overall sum, but the median of groupwise medians is not the overall median.
-
-####5.6.6 Ungrouping
-
-If you need to remove grouping, and return to operations on ungrouped data, use ungroup().
-
-```r
-daily %>% 
-  ungroup() %>%             # no longer grouped by date
-  summarise(flights = n())  # all flights
-```
-
-```
-## # A tibble: 1 × 1
-##   flights
-##     <int>
-## 1  336776
-```
-
-####5.6.7 Exercises
+##5.6.7 Exercises
 
 1. Brainstorm at least 5 different ways to assess the typical delay characteristics of a group of flights. Consider the following scenarios:
 
-A flight is 15 minutes early 50% of the time, and 15 minutes late 50% of the time.
+a. A flight is 15 minutes early 50% of the time, and 15 minutes late 50% of the time.
 
-A flight is always 10 minutes late.
+b. A flight is always 10 minutes late.
 
-A flight is 30 minutes early 50% of the time, and 30 minutes late 50% of the time.
+c. A flight is 30 minutes early 50% of the time, and 30 minutes late 50% of the time.
 
-99% of the time a flight is on time. 1% of the time it’s 2 hours late.
+d. 99% of the time a flight is on time. 1% of the time it’s 2 hours late.
 
-Which is more important: arrival delay or departure delay?
+e. Which is more important: arrival delay or departure delay?
 
-arrival delay because you can make up time en route.
+Arrival delay because you can make up time en route.
 
 
 ```r
@@ -1872,6 +893,9 @@ summarise(by_month, delay = mean(arr_delay, na.rm = TRUE))
 
 
 ```r
+not_cancelled <- flights %>% 
+  filter(!is.na(dep_delay), !is.na(arr_delay))
+
 not_cancelled %>%
   group_by(tailnum) %>%
   summarize(flights= sum(distance))
@@ -1919,7 +943,7 @@ not_cancelled %>%
 
 3. Our definition of cancelled flights (is.na(dep_delay) | is.na(arr_delay) ) is slightly suboptimal. Why? Which is the most important column?
 
-Can you arrive if you don't depart? I suppose you could depart and then not arrive?!
+Can you arrive if you don't depart? I suppose you could depart and then not arrive!
 
 
 ```r
@@ -1985,7 +1009,7 @@ ggplot(data=cancelled, aes(x = ave_dep_delay, y=per_cancelled))  +
 ## `geom_smooth()` using method = 'loess'
 ```
 
-![](Homework_4_files/figure-html/unnamed-chunk-60-1.png)<!-- -->
+![](Homework_4_files/figure-html/unnamed-chunk-27-1.png)<!-- -->
 
 5. Which carrier has the worst delays? Challenge: can you disentangle the effects of bad airports vs. bad carriers? Why/why not? (Hint: think about flights %>% group_by(carrier, dest) %>% summarise(n()))
 
@@ -2020,107 +1044,12 @@ flights %>%
 
 6. What does the sort argument to count() do. When might you use it?
 
-
-
-####5.7 Grouped mutates (and filters)
-
-Grouping is most useful in conjunction with summarise(), but you can also do convenient operations with mutate() and filter():
-
-Find the worst members of each group:
-
-
-```r
-flights_sml <- flights %>% 
-  group_by(year, month, day) %>%
-  filter(rank(desc(arr_delay)) < 10)
-```
-
-Find all groups bigger than a threshold:
-
-
-```r
-popular_dests <- flights %>% 
-  group_by(dest) %>% 
-  filter(n() > 365)
-popular_dests
-```
-
-```
-## Source: local data frame [332,577 x 19]
-## Groups: dest [77]
-## 
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    <int> <int> <int>    <int>          <int>     <dbl>    <int>
-## 1   2013     1     1      517            515         2      830
-## 2   2013     1     1      533            529         4      850
-## 3   2013     1     1      542            540         2      923
-## 4   2013     1     1      544            545        -1     1004
-## 5   2013     1     1      554            600        -6      812
-## 6   2013     1     1      554            558        -4      740
-## 7   2013     1     1      555            600        -5      913
-## 8   2013     1     1      557            600        -3      709
-## 9   2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # ... with 332,567 more rows, and 12 more variables: sched_arr_time <int>,
-## #   arr_delay <dbl>, carrier <chr>, flight <int>, tailnum <chr>,
-## #   origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>,
-## #   minute <dbl>, time_hour <dttm>
-```
-
-Standardise to compute per group metrics:
-
-
-```r
-popular_dests %>% 
-  filter(arr_delay > 0) %>% 
-  mutate(prop_delay = arr_delay / sum(arr_delay)) %>% 
-  select(year:day, dest, arr_delay, prop_delay)
-```
-
-```
-## Source: local data frame [131,106 x 6]
-## Groups: dest [77]
-## 
-##     year month   day  dest arr_delay   prop_delay
-##    <int> <int> <int> <chr>     <dbl>        <dbl>
-## 1   2013     1     1   IAH        11 1.106740e-04
-## 2   2013     1     1   IAH        20 2.012255e-04
-## 3   2013     1     1   MIA        33 2.350026e-04
-## 4   2013     1     1   ORD        12 4.239594e-05
-## 5   2013     1     1   FLL        19 9.377853e-05
-## 6   2013     1     1   ORD         8 2.826396e-05
-## 7   2013     1     1   LAX         7 3.444441e-05
-## 8   2013     1     1   DFW        31 2.817951e-04
-## 9   2013     1     1   ATL        12 3.996017e-05
-## 10  2013     1     1   DTW        16 1.157257e-04
-## # ... with 131,096 more rows
-```
-
-A grouped filter is a grouped mutate followed by an ungrouped filter. I generally avoid them except for quick and dirty manipulations: otherwise it’s hard to check that you’ve done the manipulation correctly.
-
-Functions that work most naturally in grouped mutates and filters are known as window functions (vs. the summary functions used for summaries). You can learn more about useful window functions in the corresponding vignette: vignette("window-functions").
-
-####5.7.1 Exercises
+##5.7.1 Exercises
 
 1. Refer back to the lists of useful mutate and filtering functions. Describe how each operation changes when you combine it with grouping.
 
 2. Which plane (tailnum) has the worst on-time record?
 
-
-```r
-?arrange
-```
-
-```
-## Help on topic 'arrange' was found in the following packages:
-## 
-##   Package               Library
-##   plyr                  /Library/Frameworks/R.framework/Versions/3.3/Resources/library
-##   dplyr                 /Library/Frameworks/R.framework/Versions/3.3/Resources/library
-## 
-## 
-## Using the first match ...
-```
 
 ```r
 worst<-flights %>%
@@ -2180,11 +1109,23 @@ worst2
 
 
 ```r
+?lag
+```
+
+```
+## Help on topic 'lag' was found in the following packages:
+## 
+##   Package               Library
+##   dplyr                 /Library/Frameworks/R.framework/Versions/3.3/Resources/library
+##   stats                 /Library/Frameworks/R.framework/Versions/3.3/Resources/library
+## 
+## 
+## Using the first match ...
+```
+
+```r
 not_cancelled %>%
-  mutate(
-    previous_dep_delay = dep_delay,
-    next_dep_delay = lag(previous_dep_delay)
-  ) %>%
+  mutate(previous_dep_delay = dep_delay, next_dep_delay = lag(previous_dep_delay)) %>%
   ggplot(mapping = aes(x = previous_dep_delay, y = next_dep_delay)) + 
   geom_point() +
   geom_smooth()
@@ -2202,7 +1143,7 @@ not_cancelled %>%
 ## Warning: Removed 1 rows containing missing values (geom_point).
 ```
 
-![](Homework_4_files/figure-html/unnamed-chunk-66-1.png)<!-- -->
+![](Homework_4_files/figure-html/unnamed-chunk-30-1.png)<!-- -->
 
 6. Look at each destination. Can you find flights that are suspiciously fast? (i.e. flights that represent a potential data entry error). Compute the air time a flight relative to the shortest flight to that destination. Which flights were most delayed in the air?
 
