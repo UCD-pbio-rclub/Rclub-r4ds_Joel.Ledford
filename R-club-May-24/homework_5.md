@@ -7,6 +7,41 @@
 ```r
 library(tidyverse)
 library(stargazer)
+library(ggstance)
+library(modelr)
+sessionInfo()
+```
+
+```
+## R version 3.3.2 (2016-10-31)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: macOS Sierra 10.12.4
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] modelr_0.1.0    ggstance_0.3    stargazer_5.2   dplyr_0.5.0    
+##  [5] purrr_0.2.2     readr_1.0.0     tidyr_0.6.1     tibble_1.2     
+##  [9] ggplot2_2.2.1   tidyverse_1.1.1
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.9      plyr_1.8.4       forcats_0.2.0    tools_3.3.2     
+##  [5] digest_0.6.11    jsonlite_1.2     lubridate_1.6.0  evaluate_0.10   
+##  [9] nlme_3.1-128     gtable_0.2.0     lattice_0.20-34  psych_1.6.12    
+## [13] DBI_0.5-1        yaml_2.1.14      parallel_3.3.2   haven_1.0.0     
+## [17] xml2_1.1.1       stringr_1.1.0    httr_1.2.1       knitr_1.15.1    
+## [21] hms_0.3          rprojroot_1.2    grid_3.3.2       R6_2.2.0        
+## [25] readxl_0.1.1     foreign_0.8-67   rmarkdown_1.4    reshape2_1.4.2  
+## [29] magrittr_1.5     backports_1.0.5  scales_0.4.1     htmltools_0.3.5 
+## [33] rvest_0.3.2      assertthat_0.1   mnormt_1.5-5     colorspace_1.3-2
+## [37] stringi_1.1.2    lazyeval_0.2.0   munsell_0.4.3    broom_0.4.1
+```
+
+```r
 diamonds<-diamonds
 ```
 
@@ -143,6 +178,16 @@ removes the missing values prior to calculation.
 
 3. Install the ggstance package, and create a horizontal boxplot. How does this compare to using coord_flip()?
 
+
+```r
+ggplot(data = diamonds) +
+  geom_boxplot(mapping = aes(x = cut, y = price)) +
+  coord_flip()
+```
+
+![](homework_5_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+
+  
 4. One problem with boxplots is that they were developed in an era of much smaller datasets and tend to display a prohibitively large number of “outlying values”. One approach to remedy this problem is the letter value plot. Install the lvplot package, and try using geom_lv() to display the distribution of price vs cut. What do you learn? How do you interpret the plots?
 
 5. Compare and contrast geom_violin() with a facetted geom_histogram(), or a coloured geom_freqpoly(). What are the pros and cons of each method?
