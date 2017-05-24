@@ -187,7 +187,8 @@ There is a different number of columns.
 ```
 
 6. What trigonometric functions does R provide?
-sin, cos, tan , etc.
+
+sin, cos, tan , etc. How is this related to the chapter or exercises?
 
 ##5.6.7 Exercises
 
