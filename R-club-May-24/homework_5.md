@@ -6,42 +6,7 @@
 
 ```r
 library(tidyverse)
-library(stargazer)
 library(ggstance)
-library(modelr)
-sessionInfo()
-```
-
-```
-## R version 3.3.2 (2016-10-31)
-## Platform: x86_64-apple-darwin13.4.0 (64-bit)
-## Running under: macOS Sierra 10.12.4
-## 
-## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] modelr_0.1.0    ggstance_0.3    stargazer_5.2   dplyr_0.5.0    
-##  [5] purrr_0.2.2     readr_1.0.0     tidyr_0.6.1     tibble_1.2     
-##  [9] ggplot2_2.2.1   tidyverse_1.1.1
-## 
-## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.9      plyr_1.8.4       forcats_0.2.0    tools_3.3.2     
-##  [5] digest_0.6.11    jsonlite_1.2     lubridate_1.6.0  evaluate_0.10   
-##  [9] nlme_3.1-128     gtable_0.2.0     lattice_0.20-34  psych_1.6.12    
-## [13] DBI_0.5-1        yaml_2.1.14      parallel_3.3.2   haven_1.0.0     
-## [17] xml2_1.1.1       stringr_1.1.0    httr_1.2.1       knitr_1.15.1    
-## [21] hms_0.3          rprojroot_1.2    grid_3.3.2       R6_2.2.0        
-## [25] readxl_0.1.1     foreign_0.8-67   rmarkdown_1.4    reshape2_1.4.2  
-## [29] magrittr_1.5     backports_1.0.5  scales_0.4.1     htmltools_0.3.5 
-## [33] rvest_0.3.2      assertthat_0.1   mnormt_1.5-5     colorspace_1.3-2
-## [37] stringi_1.1.2    lazyeval_0.2.0   munsell_0.4.3    broom_0.4.1
-```
-
-```r
 diamonds<-diamonds
 ```
 
@@ -51,6 +16,8 @@ diamonds<-diamonds
 
 
 ```r
+?diamonds
+
 ggplot(data = diamonds) +
   geom_histogram(mapping = aes(x = x), binwidth = 0.5)
 ```
@@ -72,34 +39,121 @@ ggplot(data = diamonds) +
 ![](homework_5_files/figure-html/unnamed-chunk-2-3.png)<!-- -->
 
 
+```r
+diamonds %>%
+  count(cut_width(x, 0.5))
+```
 
+```
+## # A tibble: 16 × 2
+##    `cut_width(x, 0.5)`     n
+##                 <fctr> <int>
+## 1         [-0.25,0.25]     8
+## 2          (3.25,3.75]     3
+## 3          (3.75,4.25]  1834
+## 4          (4.25,4.75] 12680
+## 5          (4.75,5.25]  7502
+## 6          (5.25,5.75]  6448
+## 7          (5.75,6.25]  6031
+## 8          (6.25,6.75]  9381
+## 9          (6.75,7.25]  4193
+## 10         (7.25,7.75]  3437
+## 11         (7.75,8.25]  1620
+## 12         (8.25,8.75]   699
+## 13         (8.75,9.25]    79
+## 14         (9.25,9.75]    18
+## 15         (9.75,10.2]     6
+## 16         (10.2,10.8]     1
+```
+
+```r
+diamonds %>% 
+  count(cut_width(y, 0.5))
+```
+
+```
+## # A tibble: 18 × 2
+##    `cut_width(y, 0.5)`     n
+##                 <fctr> <int>
+## 1         [-0.25,0.25]     7
+## 2          (3.25,3.75]     6
+## 3          (3.75,4.25]  1730
+## 4          (4.25,4.75] 12566
+## 5          (4.75,5.25]  7556
+## 6          (5.25,5.75]  6272
+## 7          (5.75,6.25]  6464
+## 8          (6.25,6.75]  9382
+## 9          (6.75,7.25]  4176
+## 10         (7.25,7.75]  3425
+## 11         (7.75,8.25]  1612
+## 12         (8.25,8.75]   654
+## 13         (8.75,9.25]    67
+## 14         (9.25,9.75]    14
+## 15         (9.75,10.2]     6
+## 16         (10.2,10.8]     1
+## 17         (31.8,32.2]     1
+## 18         (58.8,59.2]     1
+```
+
+```r
+diamonds %>% 
+  count(cut_width(z, 0.5))
+```
+
+```
+## # A tibble: 16 × 2
+##    `cut_width(z, 0.5)`     n
+##                 <fctr> <int>
+## 1         [-0.25,0.25]    20
+## 2          (0.75,1.25]     1
+## 3          (1.25,1.75]     2
+## 4          (1.75,2.25]     3
+## 5          (2.25,2.75]  9276
+## 6          (2.75,3.25] 13340
+## 7          (3.25,3.75]  9572
+## 8          (3.75,4.25] 13584
+## 9          (4.25,4.75]  5589
+## 10         (4.75,5.25]  2288
+## 11         (5.25,5.75]   238
+## 12         (5.75,6.25]    19
+## 13         (6.25,6.75]     5
+## 14         (6.75,7.25]     1
+## 15         (7.75,8.25]     1
+## 16         (31.8,32.2]     1
+```
 
 
 ```r
-ggplot(data = diamonds, mapping = aes(x = x, colour = cut)) +
+diamonds%>%
+  filter(cut=="Premium")%>%
+ggplot(mapping = aes(x = carat, colour = cut)) +
   geom_freqpoly(binwidth = 0.1)
 ```
 
 ![](homework_5_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
 ```r
-Premium<-filter(diamonds, cut=="Premium")
-
-ggplot(data = Premium) +
+diamonds%>%
+  filter(cut=="Premium")%>%
+ggplot() +
   geom_histogram(mapping = aes(x = x), binwidth = 0.5)
 ```
 
 ![](homework_5_files/figure-html/unnamed-chunk-4-2.png)<!-- -->
 
 ```r
-ggplot(data = Premium) +
+diamonds%>%
+  filter(cut=="Premium")%>%
+ggplot() +
   geom_histogram(mapping = aes(x = y), binwidth = 0.5)
 ```
 
 ![](homework_5_files/figure-html/unnamed-chunk-4-3.png)<!-- -->
 
 ```r
-ggplot(data = Premium) +
+diamonds%>%
+  filter(cut=="Premium")%>%
+ggplot() +
   geom_histogram(mapping = aes(x = z), binwidth = 0.5)
 ```
 
@@ -116,13 +170,28 @@ ggplot(data=diamonds)+
 
 
 ```r
-cheap<-filter(diamonds, price<500)
-
-ggplot(data=cheap)+
-  geom_histogram(mapping = aes(x = price), binwidth = 25)
+ggplot(data=diamonds)+
+  geom_histogram(mapping = aes(x=price), binwidth=25)
 ```
 
 ![](homework_5_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+
+```r
+ggplot(data=diamonds)+
+  geom_histogram(mapping = aes(x=price), binwidth=25)+
+  coord_cartesian(xlim=c(0,2500))
+```
+
+![](homework_5_files/figure-html/unnamed-chunk-5-2.png)<!-- -->
+
+```r
+diamonds%>%
+filter(price<2000)%>%
+ggplot()+
+  geom_histogram(mapping = aes(x = price), binwidth = 5)
+```
+
+![](homework_5_files/figure-html/unnamed-chunk-5-3.png)<!-- -->
 
 3. How many diamonds are 0.99 carat? How many are 1 carat? What do you think is the cause of the difference?
 
@@ -154,17 +223,42 @@ ggplot(data=diamonds) +
 
 ```r
 ggplot(data=diamonds) + 
+  geom_histogram(mapping = aes(x = price), binwidth = 10)
+```
+
+![](homework_5_files/figure-html/unnamed-chunk-7-2.png)<!-- -->
+
+```r
+ggplot(data=diamonds) + 
   geom_histogram(mapping = aes(x = price), binwidth = 20) +
   coord_cartesian(xlim = c(15000, 18000), ylim = c(0, 25))
 ```
 
-![](homework_5_files/figure-html/unnamed-chunk-7-2.png)<!-- -->
+![](homework_5_files/figure-html/unnamed-chunk-7-3.png)<!-- -->
+
+```r
+ggplot(data=diamonds) + 
+  geom_histogram(mapping = aes(x = price), binwidth = 20)
+```
+
+![](homework_5_files/figure-html/unnamed-chunk-7-4.png)<!-- -->
 
 ##7.4.1 Exercises
 
 1. What happens to missing values in a histogram? What happens to missing values in a bar chart? Why is there a difference?
 
 geom_bar will plot the values separately, geom_hist removes the values and tells you.
+
+
+```r
+diamonds2 <- diamonds %>% 
+  mutate(y = ifelse(y < 3 | y > 20, NA, y))
+
+ggplot(data=diamonds)+
+  geom_bar(mapping=aes(x=cut, fill=price))
+```
+
+![](homework_5_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
 2. What does na.rm = TRUE do in mean() and sum()?
 
@@ -173,6 +267,8 @@ removes the missing values prior to calculation.
 ##7.5.1.1 Exercises
 
 1. Use what you’ve learned to improve the visualisation of the departure times of cancelled vs. non-cancelled flights.
+
+
 
 2. What variable in the diamonds dataset is most important for predicting the price of a diamond? How is that variable correlated with cut? Why does the combination of those two relationships lead to lower quality diamonds being more expensive?
 
@@ -185,7 +281,7 @@ ggplot(data = diamonds) +
   coord_flip()
 ```
 
-![](homework_5_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](homework_5_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
   
 4. One problem with boxplots is that they were developed in an era of much smaller datasets and tend to display a prohibitively large number of “outlying values”. One approach to remedy this problem is the letter value plot. Install the lvplot package, and try using geom_lv() to display the distribution of price vs cut. What do you learn? How do you interpret the plots?
